@@ -1,0 +1,16 @@
+.container{
+  max-width: 1200px;
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #aaa;
+}
+
+.title{
+  width: 100%;
+  padding: 20px 0;
+  font-size: 1.4em;
+  font-weight: 600;
+  text-align: center;
+  color: var(--main-blue);
+}

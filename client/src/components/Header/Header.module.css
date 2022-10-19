@@ -1,0 +1,34 @@
+.background{
+  background-color: var(--main-blue);
+}
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title{
+  font-size: 1.5em;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.nav{
+  display: flex;
+  gap: 20px;
+}
+
+.navItem{
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.title:hover, .navItem:hover{
+  color: #fff;
+}

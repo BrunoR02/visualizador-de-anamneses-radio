@@ -1,0 +1,13 @@
+.item{
+  display: flex;
+  justify-content: space-between;
+  width: 29%;
+  padding: 20px;
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.item:hover{
+  border-color: var(--main-blue);
+}
