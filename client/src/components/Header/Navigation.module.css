@@ -7,9 +7,10 @@
   font-size: 1.1em;
   font-weight: 500;
   color: #ddd;
+  transition: color 0.2s ease;
   cursor: pointer;
 }
 
-.title:hover, .navItem:hover{
+.navItem:hover{
   color: #fff;
 }

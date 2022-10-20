@@ -6,7 +6,7 @@ import styles from "./LoginPage.module.css"
 export default function LoginPage(){
   return (
     <div className={styles.container}>
-      <MainTitle title="Realizar o Login"/>
+      <MainTitle title="Realize o seu Login"/>
       <LoginForm/>
     </div>
   )

@@ -13,14 +13,16 @@ export default function LoginForm(){
   const [passwordInput,setPasswordInput] = useState("")
   const [loading,setLoading] = useState(false)
 
-  const {login} = useContext(AuthContext)
+  const {login,delayLogin} = useContext(AuthContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   async function submitHandler(e){
     e.preventDefault()
     setLoading(true)
-    if(userInput.length!==0 && passwordInput!==0){
+    if(delayLogin){
+      dispatch(actions.createAlert({type:"error",message:"Espere um pouco para poder logar novamente."}))
+    } else if(userInput.length!==0 && passwordInput!==0){
       const user = {
         user: userInput,
         password: passwordInput

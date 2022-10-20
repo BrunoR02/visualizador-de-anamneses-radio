@@ -14,5 +14,6 @@
 .title{
   font-size: 1.5em;
   color: #ddd;
-  cursor: pointer;
+  cursor: default;
+  user-select: none;
 }

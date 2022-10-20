@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { actions } from "../../stores/alert-store";
 import AuthContext from "../../stores/AuthContext";
 
@@ -27,7 +27,6 @@ export default function Navigation(){
 
   return (
     <ul className={styles.nav}>
-      {!isLogged && <Link to="/login"><li className={styles.navItem}>Login</li></Link>}
       {isLogged && <li className={styles.navItem} onClick={logoutHandler}>Deslogar</li>}
     </ul>
   )

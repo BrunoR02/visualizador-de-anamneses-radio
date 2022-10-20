@@ -6,6 +6,7 @@ const AuthContext = createContext({
   tokenId: null,
   isLogged: false,
   autoLogout: false,
+  delayLogin: false,
   login(id){},
   logout(){},
   resetAuto(){},
@@ -23,6 +24,7 @@ function calculateRemainingTime(expirationTime){
 
 export function AuthContextProvider({children}){
   const [tokenId,setTokenId] = useState(null)
+  const [delayLogin,setDelayLogin] = useState(false)
   const [autoLogout,setAutoLogout] = useState(false)
 
   const isLogged = !!tokenId
@@ -31,13 +33,18 @@ export function AuthContextProvider({children}){
     setTokenId(null)
     sessionStorage.removeItem("tokenId")
     sessionStorage.removeItem("expirationTime")
+    setDelayLogin(true)
+
+    setTimeout(()=>{
+      setDelayLogin(false)
+    },20000)
 
     clearTimeout(expireTimeout)
   }
 
   function login(id){
     setTokenId(id)
-    const expirationTime = new Date(new Date().getTime()+10000).getTime()
+    const expirationTime = new Date(new Date().getTime()+300000).getTime()
     sessionStorage.setItem("tokenId",id)
     sessionStorage.setItem("expirationTime",expirationTime)
 
@@ -84,6 +91,7 @@ export function AuthContextProvider({children}){
     tokenId,
     isLogged,
     autoLogout,
+    delayLogin,
     login,
     logout,
     resetAuto,

@@ -13,7 +13,7 @@ export default function HomePage(){
     <Container extraClass={styles.container}>
       <MainTitle title="Anamneses"/>
       <AnamneseList pagination={pagination}/>
-      <BasicButton title="Carregar mais" onClick={()=>setPagination(state=>state+1)}/>
+      <BasicButton title="Carregar mais" clickHandler={()=>setPagination(state=>state+1)}/>
     </Container>
   )
 }
