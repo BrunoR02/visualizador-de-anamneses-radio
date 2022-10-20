@@ -13,9 +13,9 @@ app.get("/",(req,res)=>{
 })
 
 app.post("/api/anamneses",async (req,res)=>{
-  const {limit} = req.body
+  const {limit,dentist} = req.body
   
-  const anamneses = await getAnamneses(limit)
+  const anamneses = await getAnamneses(limit,dentist)
 
   if(!anamneses) res.sendStatus(404)
 

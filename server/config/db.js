@@ -9,12 +9,12 @@ async function connect(){
   return connection
 }
 
-async function getAnamneses(limit){
+async function getAnamneses(limit,dentist){
   const conn = await connect()
   
   let anamneseData
   
-  await conn.query("SELECT * FROM anm_anamnese LIMIT 0,?",[limit])
+  await conn.query("SELECT * FROM anm_anamnese WHERE dentista=? LIMIT 0,?",[dentist,limit])
   .then(response=>anamneseData=response[0])
   .catch(err=>console.log("Erro ao pegar dados dos Anamneses: " + err))
 
