@@ -32,8 +32,6 @@ export default function AnamneseInfoPage(){
     })()
   },[anamneseId])
 
-  console.log(anamnese)
-
   return (
     <Container>
       {loading && <LoadingSpinner/>}

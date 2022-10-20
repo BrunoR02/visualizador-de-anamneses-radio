@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AnamneseList from "../components/Anamnese/AnamneseList";
+import BasicButton from "../components/Buttons/BasicButton";
 import MainTitle from "../components/Contents/MainTitle";
 import Container from "../components/Layout/Container";
 
@@ -12,7 +13,7 @@ export default function HomePage(){
     <Container extraClass={styles.container}>
       <MainTitle title="Anamneses"/>
       <AnamneseList pagination={pagination}/>
-      <button className={styles.button} onClick={()=>setPagination(state=>state+1)}>Carregar mais</button>
+      <BasicButton title="Carregar mais" onClick={()=>setPagination(state=>state+1)}/>
     </Container>
   )
 }
