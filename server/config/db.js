@@ -21,4 +21,16 @@ async function getAnamneses(limit){
   return anamneseData[0]
 }
 
-module.exports = {getAnamneses}
+async function getSingleAnamnese(anamneseId){
+  const conn = await connect()
+
+  let anamneseData
+
+  await conn.query("SELECT * FROM anm_anamnese_pergunta_resposta WHERE anamnese=?",[anamneseId])
+  .then(response=>anamneseData=response)
+  .catch(err=>console.log("Erro ao pegar dados do Anamnese requerido: "+err))
+
+  return anamneseData[0]
+}
+
+module.exports = {getAnamneses,getSingleAnamnese}

@@ -19,7 +19,7 @@ export default function AnamneseList({pagination}){
           }
         })
   
-        if(!response.ok) throw Error("Erro ao fazer fetch das Anamneses")
+        if(!response.ok) throw Error("Erro ao fazer fetch dos Anamneses")
   
         const {anamneses} = await response.json()
 
