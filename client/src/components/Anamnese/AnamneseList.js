@@ -9,7 +9,7 @@ export default function AnamneseList(){
   const [list,setList] = useState([])
   const [pagination,setPagination] = useState(1)
   const [loading,setLoading] = useState(false)
-  const {tokenId,isLogged} = useContext(AuthContext)
+  const {tokenId} = useContext(AuthContext)
 
   useEffect(()=>{
     (async ()=>{
@@ -34,7 +34,7 @@ export default function AnamneseList(){
         setLoading(false)
       }
     })()
-  },[pagination])
+  },[pagination,tokenId])
 
   return (
     <ul className={styles.list}>

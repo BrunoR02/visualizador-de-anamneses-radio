@@ -1,6 +1,4 @@
-import { useState } from "react";
 import AnamneseList from "../components/Anamnese/AnamneseList";
-import BasicButton from "../components/Buttons/BasicButton";
 import MainTitle from "../components/Contents/MainTitle";
 import Container from "../components/Layout/Container";
 
