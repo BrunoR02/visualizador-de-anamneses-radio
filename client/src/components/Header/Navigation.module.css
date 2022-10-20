@@ -1,0 +1,15 @@
+.nav{
+  display: flex;
+  gap: 20px;
+}
+
+.navItem{
+  font-size: 1.1em;
+  font-weight: 500;
+  color: #ddd;
+  cursor: pointer;
+}
+
+.title:hover, .navItem:hover{
+  color: #fff;
+}

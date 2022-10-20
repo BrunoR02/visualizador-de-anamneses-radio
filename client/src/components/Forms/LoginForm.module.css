@@ -1,0 +1,46 @@
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  animation: in 1s ease 1 forwards;
+}
+
+.formControl{
+  width: 50%;
+}
+
+.label{
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.input{
+  margin: 10px 0;
+  padding: 10px;
+  background-color: transparent;
+  border: 2px solid #222;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.4s ease;
+}
+
+.input:focus{
+  border-color: var(--main-blue);
+  box-shadow: 0 0 5px var(--main-blue);  
+}
+
+@keyframes in{
+  0%{
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

@@ -60,4 +60,18 @@ async function getAnamneseDetails(){
   return anamneseData
 }
 
-module.exports = {getAnamneses,getSingleAnamnese,getAnamneseDetails}
+async function login(user,password){
+  const conn = await connect()
+
+  const data = await conn.query("SELECT dentista FROM anm_anamnese WHERE LEFT(dentista,5)=?",[user])
+
+  if(data[0].length === 0){
+    return {id:null,error:true,message:"Usuário não encontrado!"}
+  } else if(user!==password){
+    return {id:null,error:true,message:"Senha incorreta! Tente novamente."}
+  }
+
+  return {id:data[0][0].dentista,error: false,message:"Logado com sucesso!"}
+}
+
+module.exports = {getAnamneses,getSingleAnamnese,getAnamneseDetails,login}

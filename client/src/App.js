@@ -1,7 +1,8 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import AnamneseInfoPage from './pages/AnamneseInfoPage';
+import LoginPage from './pages/LoginPage';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/anamnese/:anamneseId" element={<AnamneseInfoPage/>}/>
-          <Route path="*" element={<HomePage/>}/>
+          <Route path='/login' element={<LoginPage/>}/>
+          <Route path="*" element={<Navigate to="/"/>}/>
         </Routes>
     </div>
   );

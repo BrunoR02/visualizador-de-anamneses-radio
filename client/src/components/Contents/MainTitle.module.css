@@ -5,4 +5,5 @@
   font-weight: 600;
   text-align: center;
   color: var(--main-blue);
+  cursor: default;
 }
