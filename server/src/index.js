@@ -1,5 +1,10 @@
-import express from "express"
+const express = require("express")
+const cors = require("cors")
+const { getAnamneses } = require("../config/db")
 const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 const PORT = process.env.PORT || 3001
 
@@ -7,8 +12,14 @@ app.get("/",(req,res)=>{
   res.send("Funcionando")
 })
 
-app.get("/api/anamneses",(req,res)=>{
-  res.send("Anamneses")
+app.post("/api/anamneses",async (req,res)=>{
+  const {limit} = req.body
+  
+  const anamneses = await getAnamneses(limit)
+
+  if(!anamneses) res.sendStatus(404)
+
+  res.json({anamneses})
 })
 
 app.listen(PORT,()=>{

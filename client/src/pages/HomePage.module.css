@@ -1,4 +1,7 @@
 .container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 1200px;
   margin: 50px auto;
   background-color: #fff;
@@ -13,4 +16,37 @@
   font-weight: 600;
   text-align: center;
   color: var(--main-blue);
+}
+
+.button{
+  position: relative;
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #eee;
+  background-color: var(--main-blue);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button::before{
+  content: "";
+  position: absolute;
+  display: table;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--dark-blue);
+  border-radius: 10px;
+  transition: 0.3s ease;
+  z-index: -1;
+}
+
+.button:hover::before{
+  width: 100%;
 }

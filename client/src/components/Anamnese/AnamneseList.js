@@ -1,16 +1,43 @@
 import AnamneseItem from "./AnamneseItem"
+import {useEffect,useState} from "react"
 import styles from "./AnamneseList.module.css"
+import LoadingSpinner from "../LoadingSpinner"
 
-export default function AnamneseList(){
+export default function AnamneseList({pagination}){
+  const [list,setList] = useState([])
+  const [loading,setLoading] = useState(false)
+
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        setLoading(true)
+        const response = await fetch("/api/anamneses",{
+          method:"POST",
+          body: JSON.stringify({limit: pagination * 12}),
+          headers: {
+            "Content-Type":"application/json"
+          }
+        })
+  
+        if(!response.ok) throw Error("Erro ao fazer fetch das Anamneses")
+  
+        const {anamneses} = await response.json()
+
+        setList(anamneses)
+        setLoading(false)
+      } catch(error){
+        console.log(error)
+        setLoading(false)
+      }
+    })()
+  },[pagination])
+
   return (
     <ul className={styles.list}>
-      <AnamneseItem id={1} date={"12/02/2017"}/>
-      <AnamneseItem id={2} date={"12/07/2020"}/>
-      <AnamneseItem id={3} date={"11/06/2018"}/>
-      <AnamneseItem id={1} date={"12/02/2017"}/>
-      <AnamneseItem id={2} date={"12/07/2020"}/>
-      <AnamneseItem id={3} date={"11/06/2018"}/>
-      <button className={styles.button}>Carregar mais</button>
+      {loading && <LoadingSpinner/>}
+      {list.map(item=>{
+        return <AnamneseItem key={item.id} id={item.id} date={item.data}/>
+      })}
     </ul>
   )
 }
