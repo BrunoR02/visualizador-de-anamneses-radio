@@ -1,0 +1,11 @@
+.date{
+  align-self: flex-end;
+  position: relative;
+  display: block;
+  width: 100%;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  cursor: default;
+}

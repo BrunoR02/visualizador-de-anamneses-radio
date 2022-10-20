@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import AnamneseDetails from "../components/Anamnese/AnamneseDetails"
 import BackButton from "../components/Buttons/BackButton"
 import MainTitle from "../components/Contents/MainTitle"
 import Container from "../components/Layout/Container"
 import LoadingSpinner from "../components/LoadingSpinner"
 
+import styles from "./AnamneseInfoPage.module.css"
+
 export default function AnamneseInfoPage(){
-  const [anamnese,setAnamnese] = useState([])
+  const [anamnese,setAnamnese] = useState(null)
   const [loading,setLoading] = useState(false)
   const {anamneseId} = useParams()
 
@@ -18,7 +21,7 @@ export default function AnamneseInfoPage(){
   
         if(!response.ok) throw Error("Erro ao fazer fetch do Anamnese")
   
-        const {anamnese} = await response.json()
+        const anamnese = await response.json()
   
         setAnamnese(anamnese)
         setLoading(false)
@@ -29,14 +32,17 @@ export default function AnamneseInfoPage(){
     })()
   },[anamneseId])
 
+  console.log(anamnese)
+
   return (
     <Container>
       {loading && <LoadingSpinner/>}
-      {anamnese.length!==0 && (
+      {anamnese && (
         <>
           <BackButton/>
-          <MainTitle title={`Anamnese nº${anamnese[0].anamnese}`}/>
-          
+          <MainTitle title={`Anamnese nº${anamnese.id}`}/>
+          <span className={styles.date}>{new Date(+anamnese.date * 1000).toLocaleDateString()}</span>
+          <AnamneseDetails anamneseData={anamnese}/>
         </>
       )}
     </Container>

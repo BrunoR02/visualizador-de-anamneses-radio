@@ -15,10 +15,10 @@ async function getAnamneses(limit){
   let anamneseData
   
   await conn.query("SELECT * FROM anm_anamnese LIMIT 0,?",[limit])
-  .then(response=>anamneseData=response)
+  .then(response=>anamneseData=response[0])
   .catch(err=>console.log("Erro ao pegar dados dos Anamneses: " + err))
 
-  return anamneseData[0]
+  return anamneseData
 }
 
 async function getSingleAnamnese(anamneseId){
@@ -26,11 +26,38 @@ async function getSingleAnamnese(anamneseId){
 
   let anamneseData
 
-  await conn.query("SELECT * FROM anm_anamnese_pergunta_resposta WHERE anamnese=?",[anamneseId])
-  .then(response=>anamneseData=response)
-  .catch(err=>console.log("Erro ao pegar dados do Anamnese requerido: "+err))
+  try{
+    const anamnese = await conn.query("SELECT * FROM anm_anamnese_pergunta_resposta WHERE anamnese=?",[anamneseId])
+    const anamneseDate = await conn.query("SELECT data FROM anm_anamnese WHERE id=?",[anamneseId])
+    anamneseData = {
+      date: anamneseDate[0][0].data,
+      id: anamnese[0][0].anamnese,
+      details: anamnese[0].map(item=>({pergunta:item.pergunta,resposta:item.resposta}))
+    }
+  } catch(err){
+    console.log(err)
+  }
 
-  return anamneseData[0]
+  return anamneseData
 }
 
-module.exports = {getAnamneses,getSingleAnamnese}
+async function getAnamneseDetails(){
+  const conn = await connect()
+
+  let anamneseData
+
+  try{
+    const questions = await conn.query("SELECT * FROM anm_pergunta")
+    const answers = await conn.query("SELECT * FROM anm_resposta")
+    anamneseData = {
+      questions: questions[0],
+      answers: answers[0]
+    }
+  } catch(err){
+    console.log(err)
+  }
+
+  return anamneseData
+}
+
+module.exports = {getAnamneses,getSingleAnamnese,getAnamneseDetails}

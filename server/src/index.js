@@ -1,6 +1,6 @@
 const express = require("express")
 const cors = require("cors")
-const { getAnamneses, getSingleAnamnese } = require("../config/db")
+const { getAnamneses, getSingleAnamnese, getAnamneseDetails } = require("../config/db")
 const app = express()
 
 app.use(cors())
@@ -29,7 +29,15 @@ app.get("/api/anamnese/:anamneseId",async(req,res)=>{
 
   if(!anamnese) res.sendStatus(404)
 
-  res.json({anamnese})
+  res.json(anamnese)
+})
+
+app.get("/api/anamnese-details",async (req,res)=>{
+  const anamneseDetails = await getAnamneseDetails()
+
+  if(!anamneseDetails) res.sendStatus(404)
+
+  res.json({...anamneseDetails})
 })
 
 app.listen(PORT,()=>{

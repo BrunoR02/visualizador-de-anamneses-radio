@@ -14,7 +14,7 @@ code {
 }
 
 
-div,ul,li,section,article,a,h1,h2,h3,h4,h5,h6,button,form,input,textarea{
+div,ul,li,section,article,a,h1,h2,h3,h4,h5,h6,button,form,input,textarea,p{
   margin: 0;
   padding: 0;
   list-style: none;
