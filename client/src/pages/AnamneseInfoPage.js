@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import BackButton from "../components/Buttons/BackButton"
 import MainTitle from "../components/Contents/MainTitle"
 import Container from "../components/Layout/Container"
 import LoadingSpinner from "../components/LoadingSpinner"
@@ -33,7 +34,9 @@ export default function AnamneseInfoPage(){
       {loading && <LoadingSpinner/>}
       {anamnese.length!==0 && (
         <>
+          <BackButton/>
           <MainTitle title={`Anamnese nº${anamnese[0].anamnese}`}/>
+          
         </>
       )}
     </Container>
