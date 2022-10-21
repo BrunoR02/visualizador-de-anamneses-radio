@@ -59,7 +59,7 @@ export function AuthContextProvider({children}){
     setTokenId(sessionStorage.getItem("tokenId"))
     if(isLogged){
       const durationTime = calculateRemainingTime(sessionStorage.getItem("expirationTime"))
-      if(durationTime < 0){
+      if(durationTime < 10000){
         setAutoLogout(true)
         logout()
       } else {
