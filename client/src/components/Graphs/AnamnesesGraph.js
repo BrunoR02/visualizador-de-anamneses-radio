@@ -12,6 +12,8 @@ import { useState } from "react";
 export default function AnamnesesGraph({anamneseData}){
   const [graphYear,setGraphYear] = useState("2015")
 
+  console.log(getYearsFromData(anamneseData))
+
   const labels = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"]
   const datasets = [{
     label: "Anamneses",
