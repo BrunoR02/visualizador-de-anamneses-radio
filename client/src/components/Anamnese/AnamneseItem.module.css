@@ -1,5 +1,5 @@
 .item{
-  width: 28%;
+  width: 32%;
   padding: 20px;
   border: 1px solid #aaa;
   border-radius: 10px;
@@ -15,4 +15,16 @@
 
 .item:hover{
   border-color: var(--main-blue);
+}
+
+@media (max-width: 768px){
+  .item{
+    width: 48%;
+  }
+}
+
+@media (max-width: 500px){
+  .item{
+    width: 80%;
+  }
 }

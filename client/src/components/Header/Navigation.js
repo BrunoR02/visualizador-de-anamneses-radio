@@ -7,17 +7,18 @@ import AuthContext from "../../stores/AuthContext";
 import styles from "./Navigation.module.css"
 
 export default function Navigation(){
-  const {isLogged,logout,autoLogout} = useContext(AuthContext)
+  const {isLogged,logout,autoLogout,resetAuto} = useContext(AuthContext)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(()=>{
     if(autoLogout){
       logout()
+      resetAuto()
       dispatch(actions.createAlert({type: "warning",message: "Você foi deslogado por inatividade! Faça o login novamente para continuar."}))
       navigate("/login")
     }
-  },[autoLogout,dispatch,logout,navigate])
+  },[autoLogout,dispatch,logout,navigate,resetAuto])
 
   function logoutHandler(){
     logout()

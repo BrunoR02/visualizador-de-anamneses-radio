@@ -1,8 +1,15 @@
 .container{
   position: relative;
-  max-width: 1200px;
+  width: 80%;
   margin: 50px auto;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 5px #aaa;
+}
+
+@media (max-width: 500px){
+  .container{
+    width: 100%;
+    border-radius: 0;
+  }
 }

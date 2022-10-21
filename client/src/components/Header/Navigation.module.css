@@ -6,11 +6,17 @@
 .navItem{
   font-size: 1.1em;
   font-weight: 500;
-  color: #ddd;
+  color: var(--main-black);
   transition: color 0.2s ease;
   cursor: pointer;
 }
 
 .navItem:hover{
   color: #fff;
+}
+
+@media (max-width: 500px){
+  .nav{
+    margin-top: 10px;
+  }
 }

@@ -38,7 +38,7 @@ export default function AnamneseInfoPage(){
       {anamnese && (
         <>
           <BackButton/>
-          <MainTitle title={`Anamnese nº${anamnese.id}`}/>
+          <MainTitle title={`Anamnese nº${anamnese.id}`} extraClass={styles.title}/>
           <span className={styles.date}>{new Date(+anamnese.date * 1000).toLocaleDateString()}</span>
           <AnamneseDetails anamneseData={anamnese}/>
         </>

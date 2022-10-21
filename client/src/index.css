@@ -21,6 +21,12 @@ div,ul,li,section,article,a,h1,h2,h3,h4,h5,h6,button,form,input,textarea,p{
   text-decoration: none;
 }
 
+*{
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
 :root{
   --main-black: #222222;
   --main-blue: #155680;

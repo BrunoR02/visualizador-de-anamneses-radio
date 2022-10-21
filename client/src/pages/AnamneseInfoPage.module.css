@@ -3,9 +3,14 @@
   position: relative;
   display: block;
   width: 100%;
+  margin-bottom: 10px;
   font-size: 1.3em;
   font-weight: 600;
   color: #555;
   text-align: center;
   cursor: default;
+}
+
+.title{
+  padding-bottom: 0;
 }
