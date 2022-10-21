@@ -20,11 +20,10 @@ export default function AnamneseDetails({anamneseData}){
 
         setQuestions(anamneseDetails.questions)
         setAnswers(anamneseDetails.answers)
-        setLoading(false)
       } catch(error){
         console.log(error)
-        setLoading(false)
       }
+      setLoading(false)
     })()
   },[])
 
