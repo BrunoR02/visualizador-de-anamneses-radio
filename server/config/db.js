@@ -1,9 +1,10 @@
 const {createConnection} = require("mysql2/promise")
+require('dotenv').config();
 
 async function connect(){
   if(global.connection && global.connection.status !== "disconnected") return global.connection
 
-  const connection = await createConnection("mysql://rmteste8:H6xUsnEU@rmteste.cp3xapebzks5.us-east-1.rds.amazonaws.com:3306/anamnese")
+  const connection = await createConnection(process.env.MYSQL_CONNECTION)
   console.log("Conexão com Banco de Dados realizada com sucesso!")
   global.connection = connection
   return connection
