@@ -5,6 +5,7 @@ import BackButton from "../components/Buttons/BackButton"
 import MainTitle from "../components/Contents/MainTitle"
 import Container from "../components/Layout/Container"
 import LoadingSpinner from "../components/LoadingSpinner"
+import convertDateToLocale from "../helpers/convertDateToLocale"
 
 import styles from "./AnamneseInfoPage.module.css"
 
@@ -39,7 +40,7 @@ export default function AnamneseInfoPage(){
         <>
           <BackButton/>
           <MainTitle title={`Anamnese nº${anamnese.id}`} extraClass={styles.title}/>
-          <span className={styles.date}>{new Date(+anamnese.date * 1000).toLocaleDateString()}</span>
+          <span className={styles.date}>{convertDateToLocale(new Date(+anamnese.date * 1000).toISOString().slice(0,10))}</span>
           <AnamneseDetails anamneseData={anamnese}/>
         </>
       )}

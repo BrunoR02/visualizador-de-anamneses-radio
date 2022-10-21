@@ -32,11 +32,13 @@ export default function HomePage(){
   return (
     <>
       {loading && <LoadingSpinner/>}
-      <Container extraClass={styles.container}>
-        <AnamnesesGraph anamneseData={anamneseData}/>
-        <MainTitle title="Lista de Anamneses"/>
-        <AnamneseList anamneses={anamneseData}/>
-      </Container>
+      {anamneseData.length!==0 && (
+        <Container extraClass={styles.container}>
+          <AnamnesesGraph anamneseData={anamneseData}/>
+          <MainTitle title="Lista de Anamneses"/>
+          <AnamneseList anamneses={anamneseData}/>
+        </Container>
+      )}
     </>
   )
 }
