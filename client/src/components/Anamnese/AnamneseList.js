@@ -5,7 +5,8 @@ import LoadingSpinner from "../LoadingSpinner"
 import AuthContext from "../../stores/AuthContext"
 import BasicButton from "../Buttons/BasicButton"
 
-export default function AnamneseList(){
+export default function AnamneseList({setAnamneseData}){
+  const [anamneses,setAnamneses] = useState([])
   const [list,setList] = useState([])
   const [pagination,setPagination] = useState(1)
   const [loading,setLoading] = useState(false)
@@ -13,36 +14,36 @@ export default function AnamneseList(){
 
   useEffect(()=>{
     (async ()=>{
-      try{
-        setLoading(true)
-        const response = await fetch("/api/anamneses",{
-          method:"POST",
-          body: JSON.stringify({limit: pagination * 12,dentist:tokenId || sessionStorage.getItem("tokenId")}),
-          headers: {
-            "Content-Type":"application/json"
-          }
-        })
+        try{
+          setLoading(true)
+          const response = await fetch("/api/anamneses")
+    
+          if(!response.ok) throw Error("Erro ao fazer fetch dos Anamneses")
+    
+          const data = await response.json()
   
-        if(!response.ok) throw Error("Erro ao fazer fetch dos Anamneses")
-  
-        const {anamneses} = await response.json()
-
-        setList(anamneses)
+          setAnamneses(data.anamneses)
+          setAnamneseData(data.anamneses)
+        } catch(error){
+          console.log(error)
+        }
         setLoading(false)
-      } catch(error){
-        console.log(error)
-        setLoading(false)
-      }
     })()
-  },[pagination,tokenId])
+  },[setAnamneseData])
 
+  useEffect(()=>{
+    const displayList = anamneses.filter(anm=>anm.dentista===tokenId).slice(0,(12*pagination))
+    if(displayList.length !== list.length){
+      setList(displayList)
+    }
+  },[pagination,tokenId,list,anamneses])
   return (
     <ul className={styles.list}>
       {loading && <LoadingSpinner/>}
       {list.map(item=>{
         return <AnamneseItem key={item.id} id={item.id} date={item.data}/>
       })}
-      {list.length>12 && <BasicButton title="Carregar mais" clickHandler={()=>setPagination(state=>state+1)}/>}
+      {(list.length>12) && <BasicButton title="Carregar mais" clickHandler={()=>setPagination(state=>state+1)}/>}
     </ul>
   )
 }

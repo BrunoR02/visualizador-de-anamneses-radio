@@ -12,10 +12,8 @@ app.get("/",(req,res)=>{
   res.send("Funcionando")
 })
 
-app.post("/api/anamneses",async (req,res)=>{
-  const {limit,dentist} = req.body
-  
-  const anamneses = await getAnamneses(limit,dentist)
+app.get("/api/anamneses",async (req,res)=>{  
+  const anamneses = await getAnamneses()
 
   if(!anamneses) res.sendStatus(404)
 
