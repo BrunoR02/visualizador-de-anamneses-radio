@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AnamneseList from "../components/Anamnese/AnamneseList";
 import MainTitle from "../components/Contents/MainTitle";
 import AnamnesesGraph from "../components/Graphs/AnamnesesGraph";
 import Container from "../components/Layout/Container";
 import LoadingSpinner from "../components/LoadingSpinner";
+import AuthContext from "../stores/AuthContext";
 
 import styles from "./HomePage.module.css"
 
 export default function HomePage(){
   const [anamneseData,setAnamneseData] = useState([])
   const [loading,setLoading] = useState(false)
+  const {tokenId} = useContext(AuthContext)
 
   useEffect(()=>{
     (async ()=>{
@@ -27,7 +29,7 @@ export default function HomePage(){
         }
         setLoading(false)
     })()
-  },[])
+  },[tokenId])
   
   return (
     <>

@@ -20,12 +20,11 @@ app.get("/api/anamneses",async (req,res)=>{
   res.json({anamneses})
 })
 
-app.get("/api/anamnese/:anamneseId",async(req,res)=>{
+app.post("/api/anamnese/:anamneseId",async(req,res)=>{
   const {anamneseId} = req.params
+  const {dentistId} = req.body
 
-  const anamnese = await getSingleAnamnese(anamneseId)
-
-  if(!anamnese) res.sendStatus(404)
+  const anamnese = await getSingleAnamnese(anamneseId,dentistId)
 
   res.json(anamnese)
 })

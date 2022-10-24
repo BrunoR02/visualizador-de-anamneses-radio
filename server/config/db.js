@@ -22,24 +22,31 @@ async function getAnamneses(){
   return anamneseData
 }
 
-async function getSingleAnamnese(anamneseId){
+async function getSingleAnamnese(anamneseId,dentistId){
   const conn = await connect()
 
-  let anamneseData
+  let response
+  
+  const anamnese = await conn.query("SELECT * FROM anm_anamnese_pergunta_resposta WHERE anamnese=?",[anamneseId])
+  const anamneseDate = await conn.query("SELECT data FROM anm_anamnese WHERE id=? AND dentista=?",[anamneseId,dentistId])
 
-  try{
-    const anamnese = await conn.query("SELECT * FROM anm_anamnese_pergunta_resposta WHERE anamnese=?",[anamneseId])
-    const anamneseDate = await conn.query("SELECT data FROM anm_anamnese WHERE id=?",[anamneseId])
-    anamneseData = {
+  if(anamnese[0].length!==0 && anamneseDate[0].length!==0){
+    response = {
+      error: false,
+      message: "Anamnese achado com sucesso!",
       date: anamneseDate[0][0].data,
       id: anamnese[0][0].anamnese,
       details: anamnese[0].map(item=>({pergunta:item.pergunta,resposta:item.resposta}))
     }
-  } catch(err){
-    console.log(err)
+  } else {
+    response ={
+      error: true,
+      message: "Anamnese não encontrado"
+    }
   }
+  
 
-  return anamneseData
+  return response
 }
 
 async function getAnamneseDetails(){

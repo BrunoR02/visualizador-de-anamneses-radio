@@ -3,7 +3,7 @@ import Header from './components/Header/Header';
 import HomePage from './pages/HomePage';
 import AnamneseInfoPage from './pages/AnamneseInfoPage';
 import LoginPage from './pages/LoginPage';
-import { useContext } from 'react';
+import { useContext} from 'react';
 import AuthContext from './stores/AuthContext';
 
 function App() {
