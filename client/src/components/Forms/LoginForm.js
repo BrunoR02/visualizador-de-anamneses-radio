@@ -55,13 +55,13 @@ export default function LoginForm(){
         <div className={styles.formControl}>
           <label className={styles.label}>
             Usuário
-            <input className={styles.input} type="text" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
+            <input className={styles.input} required type="text" value={userInput} onChange={(e)=>setUserInput(e.target.value)}/>
           </label>
         </div>
         <div className={styles.formControl}>
           <label className={styles.label}>
             Senha
-            <input className={styles.input} type="password" value={passwordInput} onChange={(e)=>setPasswordInput(e.target.value)}/>
+            <input className={styles.input} required type="password" value={passwordInput} onChange={(e)=>setPasswordInput(e.target.value)}/>
           </label>
         </div>
         <BasicButton title="Logar"/>
