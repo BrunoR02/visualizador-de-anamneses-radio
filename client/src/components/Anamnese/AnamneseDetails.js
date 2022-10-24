@@ -34,11 +34,11 @@ export default function AnamneseDetails({anamneseData}){
       <ul className={styles.anamnese}>
         {!loading && questions!==0 && questions.map(question=>{
           const anamnese = anamneseData.details.find(item=>item.pergunta===question.id)
-          const respostas = anamnese && answers.find((answer)=>anamnese.resposta===answer.id)
+          const answer = anamnese && answers.find((answer)=>anamnese.resposta===answer.id)
           return (
             <li key={question.id} className={styles.item}>
               <h5 className={styles.question}>{question.descricao}</h5>
-              <p className={styles.answer}>{anamnese && respostas ? respostas.descricao: ""}</p>
+              <p className={styles.answer}>{anamnese && answer ? answer.descricao: ""}</p>
             </li>
           )
         })}
